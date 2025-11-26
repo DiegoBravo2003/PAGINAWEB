@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automotriz SLP - 10 Accesos Directos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* ========================================= */
+        /* === ESTILOS BASE Y PALETA DE COLORES === */
+        /* ========================================= */
+        :root {
+            --color-negro: #121212;
+            --color-rojo: #E30613; /* Rojo Vivo */
+            --color-blanco: #ffffff;
+            --color-gris-claro: #AAAAAA;
+            --color-gris-oscuro: #2C2C2C;
+            --fuente-principal: 'Montserrat', sans-serif;
+        }
+
+        body {
+            font-family: var(--fuente-principal);
+            background-color: var(--color-negro);
+            color: var(--color-blanco);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--color-blanco);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--color-rojo);
+        }
+
+        .contenedor {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        h1, h2, h3 {
+            color: var(--color-blanco);
+            font-weight: 900;
+            text-align: center;
+        }
+        
+        /* Botones de Acción (CTA) */
+        .btn-rojo {
+            background-color: var(--color-rojo);
+            color: var(--color-blanco);
+            padding: 12px 30px;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: 700;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .btn-rojo:hover {
+            background-color: #ff3344;
+        }
+
+        /* ========================================= */
+        /* === ENCABEZADO Y NAVEGACIÓN (Fija) === */
+        /* ========================================= */
+        header {
+            background-color: var(--color-negro);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--color-gris-oscuro);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: 900;
+            color: var(--color-rojo);
+        }
+
+        .menu-principal a {
+            margin-left: 20px;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            display: inline-block; /* Asegura que el hover se aplique bien */
+        }
+        
+        /* Ocultar el menú principal en móvil, usaríamos un menú hamburguesa real */
+        @media (max-width: 768px) {
+            .menu-principal {
+                display: none; 
+            }
+        }
+
+        /* ========================================= */
+        /* === BARRA FLOTANTE DE FÁCIL ACCESO === */
+        /* ========================================= */
+        .barra-flotante {
+            position: fixed;
+            right: 15px;
+            bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+        .acceso-rapido {
+            width: 50px;
+            height: 50px;
+            background-color: var(--color-rojo);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            transition: transform 0.2s;
+        }
+        .acceso-rapido:hover {
+            transform: scale(1.1);
+        }
+        .acceso-rapido i {
+            color: var(--color-blanco);
+            font-size: 1.5em; 
+        }
+
+        /* ========================================= */
+        /* === HERO Y BUSCADOR con IMAGEN === */
+        /* ========================================= */
+        .hero {
+            /* Imagen de auto (Unsplash) */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&q=80&w=1950&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            height: 60vh; /* Ajuste para móvil */
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 0 10px;
+        }
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        /* Ajuste para que el buscador se vea bien en móvil */
+        .buscador-rapido {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            flex-wrap: wrap; /* Permite que los campos bajen en móvil */
+            gap: 10px;
+            justify-content: center;
+        }
+        .buscador-rapido select, .buscador-rapido input, .buscador-rapido button {
+            width: 48%; /* 2 columnas en desktop, 1 en mobile */
+            padding: 10px;
+            border: 1px solid var(--color-gris-claro);
+            border-radius: 4px;
+            background-color: var(--color-negro);
+            color: var(--color-blanco);
+        }
+        /* Estilo específico para selects */
+        .buscador-rapido select option {
+            background-color: var(--color-negro); 
+            color: var(--color-blanco);
+        }
+        @media (max-width: 600px) {
+            .buscador-rapido select, .buscador-rapido input, .buscador-rapido button {
+                width: 100%; 
+            }
+            .hero h1 {
+                font-size: 1.8em;
+            }
+        }
+
+        /* ========================================= */
+        /* === 10 ACCESOS DIRECTOS (CUADRÍCULA) === */
+        /* ========================================= */
+        .accesos-directos {
+            padding: 60px 0;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5 columnas en desktop */
+            gap: 15px;
+        }
+        .tarjeta-acceso {
+            background-color: var(--color-gris-oscuro);
+            padding: 20px 10px;
+            border-radius: 8px;
+            text-align: center;
+            transition: background-color 0.3s, transform 0.2s;
+            cursor: pointer;
+        }
+        .tarjeta-acceso:hover {
+            background-color: #383838;
+            transform: translateY(-5px); /* Efecto 3D al pasar el ratón */
+        }
+        .tarjeta-acceso h3 {
+            color: var(--color-rojo);
+            margin: 10px 0 5px 0;
+            font-size: 0.9em;
+            text-transform: uppercase;
+        }
+        .tarjeta-acceso i {
+            font-size: 2em;
+            color: var(--color-blanco);
+        }
+        .tarjeta-acceso p {
+            color: var(--color-gris-claro);
+            font-size: 0.8em;
+            margin: 0;
+        }
+        
+        /* Adaptación a móvil (10 accesos en cuadrícula 2x5) */
+        @media (max-width: 992px) {
+            .accesos-directos {
+                grid-template-columns: repeat(3, 1fr); /* 3 columnas en tablet */
+            }
+        }
+        @media (max-width: 600px) {
+            .accesos-directos {
+                grid-template-columns: repeat(2, 1fr); /* 2 columnas en móvil */
+            }
+            .tarjeta-acceso h3 {
+                font-size: 0.8em;
+            }
+        }
+
+        /* ========================================= */
+        /* === SECCIONES DE CONTENIDO ANCLADAS === */
+        /* ========================================= */
+        section {
+            padding: 80px 0;
+            /* Scroll padding para que el ancla no se esconda detrás del header fijo */
+            scroll-margin-top: 80px; 
+        }
+        .seccion-contenido {
+            background-color: var(--color-gris-oscuro);
+            margin: 30px 0;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: left;
+        }
+        .seccion-contenido h2 {
+            color: var(--color-rojo);
+            text-align: left;
+            border-bottom: 2px solid var(--color-negro);
+            padding-bottom: 10px;
+        }
+        .seccion-contenido img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            object-fit: cover; /* Asegura que la imagen se vea bien */
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-negro);
+            border-top: 1px solid var(--color-gris-oscuro);
+            padding: 20px 0;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="contenedor">
+            <nav>
+                <div class="logo">SLP AUTOMOTRIZ</div>
+                <div class="menu-principal">
+                    <a href="#inventario">Inventario</a>
+                    <a href="#servicios-sec">Servicios</a>
+                    <a href="#financiamiento-sec">Financiamiento</a>
+                    <a href="#contacto-sec">Contacto</a>
+                    <a href="#" class="btn-rojo">PRUEBA DE MANEJO</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="barra-flotante">
+        <a href="https://wa.me/524445012640" target="_blank" class="acceso-rapido" title="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="tel:+524445012640" class="acceso-rapido" title="Llamar Ahora">
+            <i class="fas fa-phone"></i>
+        </a>
+        <a href="https://maps.app.goo.gl/zPzU7bxmxJGZgfge9" target="_blank" class="acceso-rapido" title="Ubicación SLP">
+            <i class="fas fa-map-marker-alt"></i>
+        </a>
+    </div>
+
+    <section class="hero">
+        <div class="contenedor">
+            <h1>POTENCIA Y ELEGANCIA EN SAN LUIS POTOSÍ</h1>
+            <p style="color:var(--color-blanco)">Vive la experiencia de conducir el auto de tus sueños con el mejor servicio.</p>
+            <div class="buscador-rapido">
+                <select>
+                    <option selected disabled>Nuevo / Usado</option>
+                    <option>Vehículos Nuevos</option>
+                    <option>Seminuevos Certificados</option>
+                </select>
+                <input type="text" placeholder="Marca o Modelo (Ej. Mazda 3)">
+                <select>
+                    <option selected disabled>Rango de Precio</option>
+                    <option>Menos de $250,000</option>
+                    <option>$250,000 - $500,000</option>
+                    <option>Más de $500,000</option>
+                </select>
+                <button class="btn-rojo">BUSCAR AHORA</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="contenedor" style="padding-top: 20px;">
+        <h2>ACCESOS CLAVE</h2>
+        <div class="accesos-directos">
+            <a href="#inventario" class="tarjeta-acceso">
+                <i class="fas fa-car-side"></i>
+                <h3>INVENTARIO COMPLETO</h3>
+                <p>Nuevos y Seminuevos en stock.</p>
+            </a>
+            <a href="#financiamiento-sec" class="tarjeta-acceso">
+                <i class="fas fa-calculator"></i>
+                <h3>CALCULADORA DE CRÉDITO</h3>
+                <p>Simula tu plan de pagos al instante.</p>
+            </a>
+            <a href="#servicios-sec" class="tarjeta-acceso">
+                <i class="fas fa-calendar-check"></i>
+                <h3>AGENDAR SERVICIO</h3>
+                <p>Reserva tu cita de mantenimiento en línea.</p>
+            </a>
+            <a href="#contacto-sec" class="tarjeta-acceso">
+                <i class="fas fa-headset"></i>
+                <h3>ASESOR EN LÍNEA</h3>
+                <p>Resuelve tus dudas por chat o llamada.</p>
+            </a>
+            <a href="#usados-sec" class="tarjeta-acceso">
+                <i class="fas fa-handshake"></i>
+                <h3>VENTA DE USADOS</h3>
+                <p>Obtén una cotización por tu auto.</p>
+            </a>
+            <a href="#mecanica-sec" class="tarjeta-acceso">
+                <i class="fas fa-tools"></i>
+                <h3>TALLER Y MECÁNICA</h3>
+                <p>Diagnóstico y reparación profesional.</p>
+            </a>
+            <a href="#refacciones-sec" class="tarjeta-acceso">
+                <i class="fas fa-cogs"></i>
+                <h3>REFACCIONES ORIGINALES</h3>
+                <p>Solicita la pieza que necesitas.</p>
+            </a>
+            <a href="#testimonio-sec" class="tarjeta-acceso">
+                <i class="fas fa-star"></i>
+                <h3>OPINIONES DE CLIENTES</h3>
+                <p>Conoce la experiencia de otros compradores.</p>
+            </a>
+            <a href="#promociones-sec" class="tarjeta-acceso">
+                <i class="fas fa-tags"></i>
+                <h3>PROMOCIONES DEL MES</h3>
+                <p>Descuentos y meses sin intereses.</p>
+            </a>
+            <a href="#ubicacion-sec" class="tarjeta-acceso">
+                <i class="fas fa-map-marked-alt"></i>
+                <h3>VISÍTANOS EN SLP</h3>
+                <p>Encuentra nuestra dirección y horarios.</p>
+            </a>
+        </div>
+    </section>
+
+    <section class="contenedor" id="inventario">
+        <div class="seccion-contenido">
+            <h2>INVENTARIO COMPLETO</h2>
+            <img src="IMGCARROS/IMG1.jpg">
+            <p style="color:var(--color-gris-claro)">Aquí encontrarás el listado completo de todos nuestros modelos nuevos y usados disponibles en San Luis Potosí. Utiliza los filtros avanzados para encontrar ese vehículo que cumple con todos tus requisitos de marca, modelo y presupuesto. ¡Tu auto ideal te espera!</p>
+            <a href="#" class="btn-rojo">Ver Todos los Autos</a>
+        </div>
+    </section>
+    
+    <section class="contenedor" id="financiamiento-sec">
+        <div class="seccion-contenido">
+            <h2>CALCULADORA DE CRÉDITO</h2>
+            <p style="color:var(--color-gris-claro)">Utiliza nuestra herramienta en línea para estimar tus pagos mensuales. Ingresa el valor del vehículo y el enganche que deseas dar para encontrar el plan de financiamiento que mejor se adapte a tu presupuesto. ¡Aprobación rápida y flexible!</p>
+            <a href="#" class="btn-rojo">Simular Crédito</a>
+        </div>
+    </section>
+
+    <section class="contenedor" id="servicios-sec">
+        <div class="seccion-contenido">
+            <h2>AGENDAR SERVICIO</h2>
+            <img src="IMGCARROS/IMG2.jpg" alt="Taller Automotriz" style="max-height: 300px; width: 100%;">
+            <p style="color:var(--color-gris-claro)">Garantizamos el mejor mantenimiento para tu vehículo con técnicos certificados y equipos de última generación. Agenda tu cita de servicio para mantenimiento preventivo, cambio de aceite o revisión general de forma rápida y sencilla en nuestro taller certificado en SLP.</p>
+            <a href="#" class="btn-rojo">Reservar Cita</a>
+        </div>
+    </section>
+    
+    <section class="contenedor" id="contacto-sec">
+        <div class="seccion-contenido">
+            <h2>ASESOR EN LÍNEA</h2>
+            <p style="color:var(--color-gris-claro)">¿Tienes dudas sobre un modelo, financiamiento o servicio? Nuestro equipo de asesores expertos está listo para atenderte de lunes a sábado. Contáctanos por teléfono, WhatsApp o deja tus datos en el formulario y te llamaremos de vuelta.</p>
+            <a href="tel:+524440000000" class="btn-rojo">Llamar Ahora</a>
+        </div>
+    </section>
+    
+    <section class="contenedor" id="usados-sec"> 
+        <div class="seccion-contenido">
+            <h2>VENTA DE USADOS</h2>
+            <p style="color:var(--color-gris-claro)">¿Deseas vender o dejar tu vehículo actual a cuenta? En SLP Automotriz tomamos tu auto usado al mejor precio del mercado. Todos nuestros seminuevos pasan por una certificación de 150 puntos para ofrecerte total tranquilidad y garantía.</p>
+        </div> 
+    </section>
+    
+    <section class="contenedor" id="mecanica-sec"> 
+        <div class="seccion-contenido">
+            <h2>TALLER Y MECÁNICA</h2>
+            <p style="color:var(--color-gris-claro)">Ofrecemos servicios de reparación mayor y menor, diagnóstico electrónico avanzado, enderezado y pintura. Contamos con tecnología de punta y personal altamente capacitado para dejar tu vehículo como nuevo.</p>
+        </div> 
+    </section>
+    
+    <section class="contenedor" id="refacciones-sec"> 
+        <div class="seccion-contenido">
+            <h2>REFACCIONES ORIGINALES</h2>
+            <p style="color:var(--color-gris-claro)">Para garantizar el rendimiento óptimo de tu automóvil, solo utilizamos refacciones y accesorios originales de fábrica. Solicita tu pieza con el número de serie de tu vehículo y te la enviamos o instalamos en nuestro taller.</p>
+        </div> 
+    </section>
+    
+    <section class="contenedor" id="testimonio-sec"> 
+        <div class="seccion-contenido">
+            <h2>OPINIONES DE CLIENTES</h2>
+            <p style="color:var(--color-gris-claro)">Nuestra reputación se basa en la satisfacción de nuestros clientes. Lee las valoraciones sobre la atención de ventas, la calidad del servicio en taller y la experiencia de compra en general. ¡Tu opinión nos ayuda a mejorar!</p>
+        </div> 
+    </section>
+    
+    <section class="contenedor" id="promociones-sec"> 
+        <div class="seccion-contenido">
+            <h2>PROMOCIONES DEL MES</h2>
+            <p style="color:var(--color-gris-claro)">No te pierdas las ofertas exclusivas de este mes: tasas de interés preferenciales en modelos nuevos, meses sin intereses en servicio de taller y descuentos especiales en seminuevos seleccionados. ¡Consulta la vigencia!</p>
+        </div> 
+    </section>
+    
+    <section class="contenedor" id="ubicacion-sec"> 
+    <div class="seccion-contenido">
+        <h2>VISÍTANOS EN SLP</h2>
+        <p style="color:var(--color-gris-claro)">
+            Estamos ubicados en la zona de mayor crecimiento de San Luis Potosí. 
+            Encuentra nuestra ubicación exacta, revisa nuestros horarios de atención 
+            y obtén las indicaciones para llegar.
+        </p>
+
+        <!-- MINI MAPA -->
+        <div style="margin: 20px 0;">
+            <iframe 
+    width="100%" 
+    height="300" 
+    style="border:0; border-radius: 12px;" 
+    loading="lazy"
+    allowfullscreen
+    src="https://maps.google.com/maps?q=22.141861, -101.032475&z=15&output=embed">
+</iframe>
+
+        </div>
+
+        <a href="https://maps.app.goo.gl/zPzU7bxmxJGZgfge9" target="_blank" class="btn-rojo">Abrir en Google Maps</a>
+    </div>
+</section>
+
+
+
+    <footer>
+        <div class="contenedor footer-contenido">
+            <div style="text-align: center; width: 100%; margin-top: 30px; font-size: 0.8em; border-top: 1px solid var(--color-gris-oscuro); padding-top: 20px;">
+                © 2025 SLP Automotriz. Todos los derechos reservados. | <a href="#">Aviso de Privacidad</a> | <a href="#">Términos y Condiciones</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
